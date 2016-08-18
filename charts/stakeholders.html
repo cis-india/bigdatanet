@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Leaflet Layers Control Example</title>
+	<title>Conceptualising Big Data Research Network - Potential Stakeholders</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
@@ -10,28 +10,41 @@
 	<div id="map" style="width: 100%; height: 450px"></div>
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 	<script>
-		var academic = new L.LayerGroup();
-		L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.').addTo(academic),
-		L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(academic),
-		L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.').addTo(academic),
-		L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(academic);
-	    var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+		var academia = new L.LayerGroup();
+		L.marker([31.02, 121.43]).bindPopup('<strong>Big Data Engineering Technology Research Center, Shanghai Jiao Tong University</strong><br />China<br />Academia').addTo(academia),
+		L.marker([31.19, 29.90]).bindPopup('<strong>Information Technology Institute</strong><br />Egypt<br />Academia').addTo(academia),
+		L.marker([35.73, -5.89]).bindPopup('<strong>Faculty of Sciences and Techniques of Tangier</strong><br />Morocco<br />Academia').addTo(academia),
+		L.marker([-33.91, 151.23]).bindPopup('<strong>Centre for Big Data Research in Health, University of New South Wales</strong><br />Australia<br />Academia').addTo(academia);		
+		var civilsociety = new L.LayerGroup();
+		L.marker([6.91, 79.88]).bindPopup('<strong>LIRNEasia</strong><br />Sri Lanka<br />Civil Society').addTo(civilsociety),
+		L.marker([-33.50, -70.72]).bindPopup('<strong>Derechos Digitales</strong><br />Chile<br />Civil Society').addTo(civilsociety);
+		var government = new L.LayerGroup();
+		L.marker([28.61, 77.21]).bindPopup('<strong>Big Data R&D Inititaive, Department of Science and Technology</strong><br />India<br />Government').addTo(government),
+		L.marker([-2.25, 37.34]).bindPopup('<strong>Kenyan National Bureau of Statistics</strong><br />Kenya<br />Government').addTo(government);
+		var privatesector = new L.LayerGroup();
+		L.marker([5.56, -0.17]).bindPopup('<strong>Asoko Insight</strong><br />Ghana, Kenya, Nigeria & UK<br />Private Sector').addTo(privatesector),
+		L.marker([-1.28, 36.78]).bindPopup('<strong>IBM THINKLab</strong><br />Kenya<br />Private Sector').addTo(privatesector),		
+		L.marker([-24.58, 25.90]).bindPopup('<strong>Botswana Innovation Hub</strong><br />Botswana<br />Private Sector').addTo(privatesector),
+		L.marker([-22.99, -43.35]).bindPopup('<strong>BigDataCorp</strong><br />Brazil<br />Private Sector').addTo(privatesector);
+		var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 			mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw';
 	    var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
 		    streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
 		var map = L.map('map', {
-			center: [39.73, -104.99],
-			zoom: 10,
-			layers: [grayscale, academic]
+			center: [17.21, 28.55],
+			zoom: 2,
+			layers: [grayscale, academia, civilsociety, government, privatesector]
 		});
 		var baseLayers = {
 			"Grayscale": grayscale,
-			"Streets": streets
 		};
 		var overlays = {
-			"Academic": academic
+			"Academia": academia,
+			"Civil Society": civilsociety,
+			"Government": government,
+			"Private Sector": privatesector
 		};
 		L.control.layers(baseLayers, overlays).addTo(map);
 	</script>
